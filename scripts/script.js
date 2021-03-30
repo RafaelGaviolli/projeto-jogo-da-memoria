@@ -58,21 +58,21 @@ function createCardFace(face, card, element){
 function flipCard(){
 
     if(game.setCard(this.id)) {
+        this.classList.add("flip");
+        if(game.secondCard){
+            if(game.checkMatch()) {
+                game.clearCards();
+            } else {
+                setTimeout(()=>{
+            let fistCardView = document.getElementById(game.firstCard.id);
+            let secondCardView = document.getElementById(game.secondCard.id);
 
-    
-    this.classList.add("flip");
-    if(game.checkMatch()) {
-        game.clearCards();
-    } else {
-        setTimeout(()=>{
-      let fistCardView = document.getElementById(game.firstCard.id);
-      let secondCardView = document.getElementById(game.secondCard.id);
+                fistCardView.classList.remove('flip');
+                secondCardView.classList.remove('flip');
+                game.unflipCards();
+                }, 1000);
 
-        fistCardView.classList.remove('flip');
-        secondCardView.classList.remove('flip');
-        game.clearCards();
-        }, 1000);
-
-    };
+            };
+        }
     }
 }
