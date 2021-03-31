@@ -1,5 +1,19 @@
-let game = {
+game = {
 
+    techs: [
+        'bootstrap',
+        'css',
+        'electron',
+        'firebase',
+        'html',
+        'javascript',
+        'jquery',
+        'mongo',
+        'node',
+        'react'],
+
+        cards: null,  
+    
     lockMode: false,
     firstCard: null,
     secondCard: null,
@@ -17,8 +31,8 @@ let game = {
             return true;
         }else{
             this.secondCard = card;
-            this.secondCard.flipped = true;
             this.lockMode = true;
+            this.secondCard.flipped = true;
             return true;
     
         }
@@ -43,19 +57,10 @@ let game = {
         this.clearCards();
     },
 
-    techs: [
-        'bootstrap',
-        'css',
-        'electron',
-        'firebase',
-        'html',
-        'javascript',
-        'jquery',
-        'mongo',
-        'node',
-        'react'],
+    checkGameOver(){
+        return this.cards.filter(card=>!card.flipped).length == 0;
+    },
 
-        cards: null,
 
        
     createCardsFromTechs: function (){
